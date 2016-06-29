@@ -1,7 +1,6 @@
 .memory-card {
     display: inline-block;
     border: 3px black solid;
-    background-color: blue;
     height: 100px;
     width: 100px;
 }
