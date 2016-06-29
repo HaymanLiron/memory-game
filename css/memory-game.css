@@ -1,4 +1,5 @@
 .memory-card {
+    background-size: cover;
     display: inline-block;
     border: 3px black solid;
     height: 100px;
