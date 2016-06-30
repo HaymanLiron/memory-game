@@ -1,5 +1,6 @@
 var cardsCurrentlyTurned = [];
 var pairsFound = 0;
+var wrongGuesses = 0;
 var NUM_PAIRS = 4;
 var cardBack = "./images/texture.jpg";
 var screenBackground = "./images/simpleBg.jpg";
@@ -22,8 +23,27 @@ var board = {
     ]
 };
 
+function personalisedGreeting(){
+    if (username === ""){
+        return "Well done!";
+    } else {
+        return "Well done " + username + "!";
+    }
+}
+
+function numErrorsFeedback(){
+    var numErrorsOutput = "";
+    if (wrongGuesses === 1){
+        numErrorsOutput = wrongGuesses + " error.";
+    }else{
+        numErrorsOutput = wrongGuesses + " errors.";
+    }
+    return " You guessed all of the pairs correctly with only " + numErrorsOutput;
+}
+
 function checkAllMatched() {
     if (pairsFound === NUM_PAIRS) {
+        document.getElementById("closeMessage").textContent = personalisedGreeting() + numErrorsFeedback();
         $('#endMessage').modal('show');
     }
 }
@@ -38,6 +58,7 @@ function checkTwoCardsEqual(clickEvent) {
             for (var i = 0; i < cardsCurrentlyTurned.length; i++) {
                 cardsCurrentlyTurned[i].style.backgroundImage = "url(" + clickEvent.target.getAttribute("back_src") + ")";
             }
+            wrongGuesses++;
             cardsCurrentlyTurned = [];
         }, 500);
     }
@@ -90,6 +111,7 @@ function createBoard() {
     clearBoard();
     //reset some global variables in case this is not first game
     cardsCurrentlyTurned = [];
+    wrongGuesses = 0;
     pairsFound = 0;
     var randOrder = shuffleNumbers(NUM_PAIRS);
 

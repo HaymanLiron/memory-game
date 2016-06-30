@@ -1,4 +1,4 @@
-body {
+.mainBackground {
     background-image: url("../images/simpleBg.jpg");
     background-size: cover;
 }
