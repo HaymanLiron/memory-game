@@ -1,6 +1,6 @@
 var cardsCurrentlyTurned = [];
 var pairsFound = 0;
-var NUM_PAIRS = 2;
+var NUM_PAIRS = 0;
 var board = {
     cards: [
         {front_src: "./images/1.jpg"},
@@ -24,7 +24,6 @@ function checkAllMatched() {
 
     }
 }
-
 
 function checkTwoCardsEqual(clickEvent) {
     if (cardsCurrentlyTurned[0].getAttribute("front_src") === cardsCurrentlyTurned[1].getAttribute("front_src")) {
@@ -74,23 +73,46 @@ function shuffleNumbers(n) {
     return output;
 }
 
-var randOrder = shuffleNumbers(NUM_PAIRS);
-
-
-var rowDiv = document.createElement("div");
-rowDiv.classList.add("row-div");
-
-for (var i = 0; i < randOrder.length; i++) {
-    var div = document.createElement("div");
-    for (var keys in board['cards'][randOrder[i]]) {
-        div.setAttribute(keys, board['cards'][randOrder[i]][keys]);
+function clearBoard() {
+    var rowsOfCards = document.getElementsByClassName("row-div");
+    for (var i = 0; i < rowsOfCards.length; i++){
+        rowsOfCards[i].parentElement.removeChild(rowsOfCards[i]);
     }
-    div.setAttribute("back_src", "./images/texture.jpg");
-    div.style.backgroundImage = "url(" + div.getAttribute("back_src") + ")";
-    div.classList.add("memory-card");
-    div.addEventListener("click", handleClickOnCard);
-    rowDiv.appendChild(div);
 }
-document.body.appendChild(rowDiv);
 
+function createBoard(){
+    //clear board of any previous cards in case user was already playing game
+    clearBoard();
+    var randOrder = shuffleNumbers(NUM_PAIRS);
 
+    var rowDiv = document.createElement("div");
+    rowDiv.classList.add("row-div");
+
+    for (var i = 0; i < randOrder.length; i++) {
+        var div = document.createElement("div");
+        for (var keys in board['cards'][randOrder[i]]) {
+            div.setAttribute(keys, board['cards'][randOrder[i]][keys]);
+        }
+        div.setAttribute("back_src", "./images/texture.jpg");
+        div.style.backgroundImage = "url(" + div.getAttribute("back_src") + ")";
+        div.classList.add("memory-card");
+        div.addEventListener("click", handleClickOnCard);
+        rowDiv.appendChild(div);
+    }
+    document.body.appendChild(rowDiv);
+}
+
+function generateEasy() {
+    NUM_PAIRS = 2;
+    createBoard();
+}
+
+function generateMedium() {
+    NUM_PAIRS = 6;
+    createBoard();
+}
+
+function generateHard() {
+    NUM_PAIRS = 12;
+    createBoard();
+}
