@@ -32,6 +32,7 @@ function personalisedGreeting(){
 }
 
 function numErrorsFeedback(){
+    //function that handles grammatical issues in English depending on if it is 1 error or multiple errorS
     var numErrorsOutput = "";
     if (wrongGuesses === 1){
         numErrorsOutput = wrongGuesses + " error.";
@@ -42,6 +43,7 @@ function numErrorsFeedback(){
 }
 
 function checkAllMatched() {
+    //if the user has found all the pairs, show a modal with an appropriate message
     if (pairsFound === NUM_PAIRS) {
         document.getElementById("closeMessage").textContent = personalisedGreeting() + numErrorsFeedback();
         $('#endMessage').modal('show');
@@ -66,7 +68,6 @@ function checkTwoCardsEqual(clickEvent) {
 
 function handleClickOnCard(clickEvent) {
     //flip the card over for a second by changing the background image
-
     if (cardsCurrentlyTurned.length < 2 && clickEvent.target.style.backgroundImage === "url(\"" + clickEvent.target.getAttribute("back_src") + "\")") {
         //that if statement guarantees that a) won't show more than two cards, even if user can click quickly
         // b) doesn't do anything if the card was already flipped over
@@ -98,6 +99,7 @@ function shuffleNumbers(n) {
 }
 
 function clearBoard() {
+    //clears the board in case there was a previous game
     var rowsOfCards = document.getElementsByClassName("row-div");
     for (var i = 0; i < rowsOfCards.length; i++) {
         rowsOfCards[i].parentElement.removeChild(rowsOfCards[i]);
@@ -117,7 +119,7 @@ function createBoard() {
 
     var rowDiv = document.createElement("div");
     rowDiv.classList.add("row-div");
-
+    //go through the cards in the random order and add them to the html
     for (var i = 0; i < randOrder.length; i++) {
         var div = document.createElement("div");
         for (var keys in board['cards'][randOrder[i]]) {
@@ -133,6 +135,7 @@ function createBoard() {
 }
 
 function getDifficultyLevel() {
+    //gets the user's selection for difficulty level
     if (document.getElementById("difficultyEasy").checked){
         return 2;
     } else if (document.getElementById("difficultyMedium").checked){
@@ -143,8 +146,9 @@ function getDifficultyLevel() {
 }
 
 function getCardTexture() {
+    //gets the user's selection for back of card
     if (document.getElementById("texture1").checked){
-        return "./images/RedDeck.png";
+        return "./images/rubiks.png";
     } else if (document.getElementById("texture2").checked){
         return "./images/texture.jpg";
     } else if (document.getElementById("texture3").checked){
@@ -153,6 +157,7 @@ function getCardTexture() {
 }
 
 function getScreenBackground() {
+    //gets the user's selection for a screen background
     if (document.getElementById("bgOption1").checked){
         return "./images/simpleBg.jpg";
     } else if (document.getElementById("bgOption2").checked){
@@ -163,14 +168,13 @@ function getScreenBackground() {
 }
 
 function submitSettings() {
-
-    //GET NAME
+    //get the user name from their input
     username = document.getElementById("userName").value;
     //set NUM_PAIRS based on difficulty selected
     NUM_PAIRS = getDifficultyLevel();
-    //GET CARD TEXTURE
+    //get the card texture based on selection
     cardBack = getCardTexture();
-    //GET SCREEN BACKGROUND
+    //get the screen background based on the user's selection
     screenBackground = getScreenBackground();
     createBoard();
 }
@@ -179,11 +183,11 @@ function quickStart(){
     //quickStart starts a game using the settings of the previous game
     //if this is the first game then it uses the default settings
     createBoard();
-
 }
 
 
 function generateGame(){
+    //shows the form that asks user questions about settings they want to select
     $('#settingsGame').modal('show');
 }
 
