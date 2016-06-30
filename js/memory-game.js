@@ -20,8 +20,7 @@ var board = {
 
 function checkAllMatched() {
     if (pairsFound === NUM_PAIRS) {
-        $('#myModal').modal('show');
-
+        $('#endMessage').modal('show');
     }
 }
 
@@ -102,17 +101,12 @@ function createBoard(){
     document.body.appendChild(rowDiv);
 }
 
-function generateEasy() {
-    NUM_PAIRS = 2;
-    createBoard();
+function submitSettings() {
+    console.log("pappi");
 }
 
-function generateMedium() {
-    NUM_PAIRS = 6;
-    createBoard();
+
+function generateGame() {
+    $('#settingsGame').modal('show');
 }
 
-function generateHard() {
-    NUM_PAIRS = 12;
-    createBoard();
-}

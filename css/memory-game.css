@@ -21,3 +21,12 @@
     text-align: center;
     width: 80%;
 }
+
+.settings-headings {
+    font-weight: 700;
+}
+
+.form-image {
+    height: 40px;
+    width: auto;
+}

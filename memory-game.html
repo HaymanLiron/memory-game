@@ -40,9 +40,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <!--a href is used for bootstrap formatting purposes-->
-                <li onclick="generateEasy()"><a href="#">Easy</a></li>
-                <li onclick="generateMedium()"><a href="#">Medium</a></li>
-                <li onclick="generateHard()"><a href="#">Hard</a></li>
+                <li onclick="generateGame()"><a href="#">New Game</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -52,7 +50,7 @@
 
 
 
-<div id="myModal" class="modal fade" role="dialog">
+<div id="endMessage" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -71,6 +69,90 @@
         </div>
     </div>
 </div>
+
+<div id="settingsGame" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">New Game</h4>
+            </div>
+            <div class="modal-body">
+                <!--get user name-->
+                <label class="control-label settings-headings">Name:</label>
+                <input class="form-control" id="userName" type="text" placeholder="Enter name here">
+
+                <br/>
+                <!--get difficulty level-->
+                <div class="control-label settings-headings">Difficulty:</div>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="difficultyOption1" autocomplete="off" checked> Easy
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="difficultyOption2" autocomplete="off"> Medium
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="difficultyOption3" autocomplete="off"> Hard
+                    </label>
+                </div>
+
+
+
+                <!--set window background-->
+                <div class="control-label settings-headings">Card texture:</div>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="texture1" autocomplete="off" checked> <img class="form-image" src="./images/RedDeck.png" alt="red deck of cards"/>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="texture2" autocomplete="off"> <img class="form-image" src="./images/texture.jpg" alt="simple texture"/>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="texture3" autocomplete="off"> <img class="form-image" src="./images/escher.png" alt="escher drawing"/>
+                    </label>
+                </div>
+
+
+                <!--get card texture-->
+                <div class="control-label settings-headings">Screen background:</div>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="bgOption1" autocomplete="off" checked> <img class="form-image" src="./images/simpleBg.jpg" alt="simple background"/>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="bgOption2" autocomplete="off"> <img class="form-image" src="./images/footprints.jpg" alt="footprints"/>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="bgOption3" autocomplete="off"> <img class="form-image" src="./images/wolf.jpg" alt="wolf"/>
+                    </label>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="submitSettings()" data-dismiss="modal">Start game!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
