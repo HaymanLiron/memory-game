@@ -1,7 +1,12 @@
+.white-space-top {
+    height:150px;
+}
+
 .memory-card {
     background-size: cover;
     display: inline-block;
+    text-align: center;
     border: 3px black solid;
-    height: 100px;
-    width: 100px;
+    height: 90px;
+    width: 90px;
 }

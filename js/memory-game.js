@@ -3,18 +3,18 @@ var pairsFound = 0;
 var NUM_PAIRS = 4;
 var board = {
     cards: [
-        {front_src: "./images/1.jpg", back_src: "./images/texture.jpg"},
-        {front_src: "./images/2.jpg", back_src: "./images/texture.jpg"},
-        {front_src: "./images/3.jpg", back_src: "./images/texture.jpg"},
-        {front_src: "./images/4.jpg", back_src: "./images/texture.jpg"},
-        {front_src: "./images/5.jpg", back_src: "./images/texture.jpg"},
-        {front_src: "./images/6.jpg", back_src: "./images/texture.jpg"},
-        {front_src: "./images/7.jpg", back_src: "./images/texture.jpg"},
-        {front_src: "./images/8.jpg", back_src: "./images/texture.jpg"},
-        {front_src: "./images/9.jpg", back_src: "./images/texture.jpg"},
-        {front_src: "./images/10.jpg", back_src: "./images/texture.jpg"},
-        {front_src: "./images/11.jpg", back_src: "./images/texture.jpg"},
-        {front_src: "./images/12.jpg", back_src: "./images/texture.jpg"}
+        {front_src: "./images/1.jpg"},
+        {front_src: "./images/2.jpg"},
+        {front_src: "./images/3.jpg"},
+        {front_src: "./images/4.jpg"},
+        {front_src: "./images/5.jpg"},
+        {front_src: "./images/6.jpg"},
+        {front_src: "./images/7.jpg"},
+        {front_src: "./images/8.jpg"},
+        {front_src: "./images/9.jpg"},
+        {front_src: "./images/10.jpg"},
+        {front_src: "./images/11.jpg"},
+        {front_src: "./images/12.jpg"}
     ]
 };
 
@@ -82,23 +82,27 @@ for (var i = 0; i < randOrder.length; i++) {
         var row = document.createElement("div");
         row.classList.add("row");
         var beginningDiv = document.createElement("div");
-        beginningDiv.classList.add("col-lg-4");
+        beginningDiv.classList.add("col-lg-4", "col-md-4", "col-sm-4", "col-xs-4");
         row.appendChild(beginningDiv);
     }
+
+    var bootstrapFormatDiv = document.createElement("div");
+    bootstrapFormatDiv.classList.add("col-lg-1", "col-md-1", "col-sm-1", "col-xs-1");
 
     var div = document.createElement("div");
     for (var keys in board['cards'][randOrder[i]]) {
         div.setAttribute(keys, board['cards'][randOrder[i]][keys]);
     }
+    div.setAttribute("back_src", "./images/texture.jpg");
     div.style.backgroundImage = "url(" + div.getAttribute("back_src") + ")";
     div.classList.add("memory-card");
-    div.classList.add("col-lg-1");
     div.addEventListener("click", handleClickOnCard);
-    row.appendChild(div);
+    bootstrapFormatDiv.appendChild(div);
+    row.appendChild(bootstrapFormatDiv);
     //if we have reached enough cards in the row, add a break
     if ((i + 1) % maxCardsInEachRow === 0){
         var endDiv = document.createElement("div");
-        endDiv.classList.add("col-lg-4");
+        endDiv.classList.add("col-lg-4", "col-md-4", "col-sm-4", "col-xs-4");
         row.appendChild(endDiv);
     }
     document.body.appendChild(row);
