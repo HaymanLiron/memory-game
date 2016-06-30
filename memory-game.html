@@ -40,6 +40,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <!--a href is used for bootstrap formatting purposes-->
+                <li onclick="quickStart()"><a href="#">Quick Start</a></li>
                 <li onclick="generateGame()"><a href="#">New Game</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -61,7 +62,7 @@
             </div>
             <div class="modal-body">
                 <p>You have guessed all of the pairs correctly!</p>
-                <p>After you close this window, select a level on the top right to play again!</p>
+                <p>After you close this window, select an option from the top right to play again!</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -88,29 +89,28 @@
                 <div class="control-label settings-headings">Difficulty:</div>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-primary active">
-                        <input type="radio" name="options" id="difficultyOption1" autocomplete="off" checked> Easy
+                        <input type="radio" name="difficulty" id="difficultyEasy" autocomplete="off" checked> Easy
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="difficultyOption2" autocomplete="off"> Medium
+                        <input type="radio" name="difficulty" id="difficultyMedium" autocomplete="off"> Medium
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="difficultyOption3" autocomplete="off"> Hard
+                        <input type="radio" name="difficulty" id="difficultyHard" autocomplete="off"> Hard
                     </label>
                 </div>
-
-
 
                 <!--set window background-->
                 <div class="control-label settings-headings">Card texture:</div>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-primary active">
-                        <input type="radio" name="options" id="texture1" autocomplete="off" checked> <img class="form-image" src="./images/RedDeck.png" alt="red deck of cards"/>
+                        <input type="radio" name="cardTexture" id="texture1" autocomplete="off" checked>
+                        <img class="form-image" src="./images/RedDeck.png" alt="red deck of cards"/>
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="texture2" autocomplete="off"> <img class="form-image" src="./images/texture.jpg" alt="simple texture"/>
+                        <input type="radio" name="cardTexture" id="texture2" autocomplete="off"> <img class="form-image" src="./images/texture.jpg" alt="simple texture"/>
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="texture3" autocomplete="off"> <img class="form-image" src="./images/escher.png" alt="escher drawing"/>
+                        <input type="radio" name="cardTexture" id="texture3" autocomplete="off"> <img class="form-image" src="./images/escher.png" alt="escher drawing"/>
                     </label>
                 </div>
 
@@ -119,13 +119,13 @@
                 <div class="control-label settings-headings">Screen background:</div>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-primary active">
-                        <input type="radio" name="options" id="bgOption1" autocomplete="off" checked> <img class="form-image" src="./images/simpleBg.jpg" alt="simple background"/>
+                        <input type="radio" name="backgroundImage" id="bgOption1" autocomplete="off" checked> <img class="form-image" src="./images/simpleBg.jpg" alt="simple background"/>
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="bgOption2" autocomplete="off"> <img class="form-image" src="./images/footprints.jpg" alt="footprints"/>
+                        <input type="radio" name="backgroundImage" id="bgOption2" autocomplete="off"> <img class="form-image" src="./images/footprints.jpg" alt="footprints"/>
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="bgOption3" autocomplete="off"> <img class="form-image" src="./images/wolf.jpg" alt="wolf"/>
+                        <input type="radio" name="backgroundImage" id="bgOption3" autocomplete="off"> <img class="form-image" src="./images/wolf.jpg" alt="wolf"/>
                     </label>
                 </div>
 

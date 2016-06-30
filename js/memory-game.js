@@ -1,6 +1,10 @@
 var cardsCurrentlyTurned = [];
 var pairsFound = 0;
-var NUM_PAIRS = 0;
+var NUM_PAIRS = 4;
+var cardBack = "./images/texture.jpg";
+var screenBackground = "";
+var username = "";
+
 var board = {
     cards: [
         {front_src: "./images/1.jpg"},
@@ -74,12 +78,12 @@ function shuffleNumbers(n) {
 
 function clearBoard() {
     var rowsOfCards = document.getElementsByClassName("row-div");
-    for (var i = 0; i < rowsOfCards.length; i++){
+    for (var i = 0; i < rowsOfCards.length; i++) {
         rowsOfCards[i].parentElement.removeChild(rowsOfCards[i]);
     }
 }
 
-function createBoard(){
+function createBoard() {
     //clear board of any previous cards in case user was already playing game
     clearBoard();
     var randOrder = shuffleNumbers(NUM_PAIRS);
@@ -92,7 +96,7 @@ function createBoard(){
         for (var keys in board['cards'][randOrder[i]]) {
             div.setAttribute(keys, board['cards'][randOrder[i]][keys]);
         }
-        div.setAttribute("back_src", "./images/texture.jpg");
+        div.setAttribute("back_src", cardBack);
         div.style.backgroundImage = "url(" + div.getAttribute("back_src") + ")";
         div.classList.add("memory-card");
         div.addEventListener("click", handleClickOnCard);
@@ -101,12 +105,64 @@ function createBoard(){
     document.body.appendChild(rowDiv);
 }
 
+function getDifficultyLevel() {
+    if (document.getElementById("difficultyEasy").checked){
+        return 2;
+    } else if (document.getElementById("difficultyMedium").checked){
+        return 6;
+    } else if (document.getElementById("difficultyHard").checked){
+        return 12;
+    }
+}
+
+function getCardTexture() {
+    if (document.getElementById("texture1").checked){
+        return "./images/RedDeck.png";
+    } else if (document.getElementById("texture2").checked){
+        return "./images/texture.jpg";
+    } else if (document.getElementById("texture3").checked){
+        return "./images/escher.png";
+    }
+}
+
+function getScreenBackground() {
+    if (document.getElementById("bgOption1").checked){
+        return "./images/simpleBg.jpg";
+    } else if (document.getElementById("bgOption2").checked){
+        return "./images/footprints.jpg";
+    } else if (document.getElementById("bgOption3").checked){
+        return "./images/wolf.jpg";
+    }
+}
+
 function submitSettings() {
-    console.log("pappi");
+
+    //GET NAME
+    username = document.getElementById("userName").value;
+    //set NUM_PAIRS based on difficulty selected
+    NUM_PAIRS = getDifficultyLevel();
+    //GET CARD TEXTURE
+    cardBack = getCardTexture();
+    //GET SCREEN BACKGROUND
+    screenBackground = getScreenBackground();
+
+    document.body.style.backgroundImage = "url(" + screenBackground + ")";
+    document.body.style.backgroundSize = "cover";
+    console.log(screenBackground);
+
+    createBoard();
+}
+
+function quickStart(){
+    //reset some global variables in case this is not first game
+    cardsCurrentlyTurned = [];
+    pairsFound = 0;
+    createBoard();
+
 }
 
 
-function generateGame() {
+function generateGame(){
     $('#settingsGame').modal('show');
 }
 
