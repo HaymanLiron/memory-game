@@ -2,7 +2,7 @@ var cardsCurrentlyTurned = [];
 var pairsFound = 0;
 var NUM_PAIRS = 4;
 var cardBack = "./images/texture.jpg";
-var screenBackground = "";
+var screenBackground = "./images/simpleBg.jpg";
 var username = "";
 
 var board = {
@@ -84,8 +84,13 @@ function clearBoard() {
 }
 
 function createBoard() {
+    document.body.style.backgroundImage = "url(" + screenBackground + ")";
+    document.body.style.backgroundSize = "cover";
     //clear board of any previous cards in case user was already playing game
     clearBoard();
+    //reset some global variables in case this is not first game
+    cardsCurrentlyTurned = [];
+    pairsFound = 0;
     var randOrder = shuffleNumbers(NUM_PAIRS);
 
     var rowDiv = document.createElement("div");
@@ -145,18 +150,12 @@ function submitSettings() {
     cardBack = getCardTexture();
     //GET SCREEN BACKGROUND
     screenBackground = getScreenBackground();
-
-    document.body.style.backgroundImage = "url(" + screenBackground + ")";
-    document.body.style.backgroundSize = "cover";
-    console.log(screenBackground);
-
     createBoard();
 }
 
 function quickStart(){
-    //reset some global variables in case this is not first game
-    cardsCurrentlyTurned = [];
-    pairsFound = 0;
+    //quickStart starts a game using the settings of the previous game
+    //if this is the first game then it uses the default settings
     createBoard();
 
 }

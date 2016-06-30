@@ -1,3 +1,8 @@
+body {
+    background-image: url("../images/simpleBg.jpg");
+    background-size: cover;
+}
+
 .white-space-top {
     height:150px;
 }
