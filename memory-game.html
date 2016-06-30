@@ -14,6 +14,10 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/memory-game.css" rel="stylesheet">
 
+    <!--need these scripts so modal wil work-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+
 
 </head>
 
@@ -23,12 +27,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+
             <a class="navbar-brand" href="#">Memory Game</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
@@ -39,8 +45,29 @@
     </div>
 </nav>
 
-<div class="white-space-top"> </div>
 <script src="./js/memory-game.js"></script>
+
+
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Congratulations!</h4>
+            </div>
+            <div class="modal-body">
+                <p>You have guessed all of the pairs correctly!</p>
+                <p>After you close this window, click New Game on the top right to play again!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

@@ -7,6 +7,17 @@
     display: inline-block;
     text-align: center;
     border: 3px black solid;
-    height: 90px;
-    width: 90px;
+    height: 160px;
+    width: 160px;
+}
+
+.row-div {
+    margin: auto;
+    position: absolute;
+    top: 25%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    width: 80%;
 }
