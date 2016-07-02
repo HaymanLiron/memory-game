@@ -4,24 +4,8 @@ var wrongGuesses = 0;
 var NUM_PAIRS = 4;
 var cardBack = "./images/texture.jpg";
 var screenBackground = "./images/simpleBg.jpg";
+var cardTheme = "animals";
 var username = "";
-
-var board = {
-    cards: [
-        {front_src: "./images/1.jpg"},
-        {front_src: "./images/2.jpg"},
-        {front_src: "./images/3.jpg"},
-        {front_src: "./images/4.jpg"},
-        {front_src: "./images/5.jpg"},
-        {front_src: "./images/6.jpg"},
-        {front_src: "./images/7.jpg"},
-        {front_src: "./images/8.jpg"},
-        {front_src: "./images/9.jpg"},
-        {front_src: "./images/10.jpg"},
-        {front_src: "./images/11.jpg"},
-        {front_src: "./images/12.jpg"}
-    ]
-};
 
 function personalisedGreeting(){
     if (username === ""){
@@ -85,13 +69,13 @@ function handleClickOnCard(clickEvent) {
 
 function shuffleNumbers(n) {
     //this function creates a list of 2*n numbers in a shuffled order
-    //where each number (0 through to (N-1)) appears exactly twice
+    //where each number (1 through to N) appears exactly twice
     //agreed that it can be written WAY more efficiently
     var output = [];
     while (output.length < n * 2) {
-        var ranNum = Math.floor(Math.random() * NUM_PAIRS);
+        var ranNum = Math.floor(Math.random() * NUM_PAIRS) + 1;
         while (output.lastIndexOf(ranNum) !== -1 && output.lastIndexOf(ranNum) !== output.indexOf(ranNum)) {
-            ranNum = Math.floor(Math.random() * NUM_PAIRS);
+            ranNum = Math.floor(Math.random() * NUM_PAIRS) + 1;
         }
         output.push(ranNum);
     }
@@ -122,9 +106,8 @@ function createBoard() {
     //go through the cards in the random order and add them to the html
     for (var i = 0; i < randOrder.length; i++) {
         var div = document.createElement("div");
-        for (var keys in board['cards'][randOrder[i]]) {
-            div.setAttribute(keys, board['cards'][randOrder[i]][keys]);
-        }
+        console.log("./images/" + cardTheme + "/" + randOrder[i] + ".jpg");
+        div.setAttribute("front_src", "./images/" + cardTheme + "/" + randOrder[i] + ".jpg");
         div.setAttribute("back_src", cardBack);
         div.style.backgroundImage = "url(" + div.getAttribute("back_src") + ")";
         div.classList.add("memory-card");
@@ -142,6 +125,15 @@ function getDifficultyLevel() {
         return 6;
     } else if (document.getElementById("difficultyHard").checked){
         return 12;
+    }
+}
+
+function getCardTheme() {
+    //gets the user's selection for card theme
+    if (document.getElementById("animals").checked){
+        return "animals";
+    } else if (document.getElementById("fruit").checked){
+        return "fruit";
     }
 }
 
@@ -172,6 +164,8 @@ function submitSettings() {
     username = document.getElementById("userName").value;
     //set NUM_PAIRS based on difficulty selected
     NUM_PAIRS = getDifficultyLevel();
+    //get the card theme based on selection
+    cardTheme = getCardTheme();
     //get the card texture based on selection
     cardBack = getCardTexture();
     //get the screen background based on the user's selection
